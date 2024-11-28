@@ -1,0 +1,155 @@
+David Noguera Y Samuel Bolaños
+
+1) Construir un script en python que permita la toma de lecturas de energía eléctrica de un
+grupo de usuarios:
+
+# David Noguera Y Samuel Bolaños
+# Variables 
+lecturas = 0
+sumaL = 0
+lecturaMax = None
+lecturaMin = None
+
+# Función para ingresar una nueva lectura
+def ingresarLectura():
+    global lecturas, sumaL, lecturaMax, lecturaMin
+    
+    lectura = float(input("Ingrese la nueva lectura de energía eléctrica: "))
+    
+    if lecturas == 0:
+        lecturaMax = lectura
+        lecturaMin = lectura
+    else:
+        if lectura > lecturaMax:
+            lecturaMax = lectura
+        if lectura < lecturaMin:
+            lecturaMin = lectura
+    
+    sumaL += lectura
+    lecturas += 1
+    
+    print("Lectura ingresada correctamente.")
+
+# Función para calcular el promedio de lecturas
+def calculoP():
+    if lecturas == 0:
+        print("No hay lecturas ingresadas aún.")
+    else:
+        promedio = sumaL / lecturas
+        print(f"El promedio de las lecturas es: {promedio}")
+
+# Función para mostrar la lectura máxima
+def mostrarMax():
+    if lecturas == 0:
+        print("No hay lecturas ingresadas aún.")
+    else:
+        print(f"La lectura máxima es: {lecturaMax}")
+
+# Función para mostrar la lectura mínima
+def mostrarMin():
+    if lecturas == 0:
+        print("No hay lecturas ingresadas aún.")
+    else:
+        print(f"La lectura mínima es: {lecturaMin}")
+
+# Función para mostrar la cantidad de lecturas realizadas
+def cantidadL():
+    print(f"Cantidad de lecturas realizadas: {lecturas}")
+
+# Bucle principal del programa
+while True:
+    print("\n---- Menú ----")
+    print("a) Ingresar nueva lectura")
+    print("b) Calcular promedio de lecturas")
+    print("c) Mostrar lectura máxima")
+    print("d) Mostrar lectura mínima")
+    print("e) Cantidad de lecturas realizadas")
+    print("f) Salir")
+    
+    opcion = input("Seleccione una opción: ").lower()
+    
+    if opcion == "a":
+        ingresarLectura()
+    elif opcion == "b":
+        calculoP()
+    elif opcion == "c":
+        mostrarMax()
+    elif opcion == "d":
+        mostrarMin()
+    elif opcion == "e":
+        cantidadL()
+    elif opcion == "f":
+        print("¡Fin del programa!")
+        break
+    else:
+        print("Opción inválida. Por favor, seleccione una opción válida.")
+
+
+2) Construir un script en python que reciba un número y que muestre la sumatoria de los
+divisores primos del número digitado.
+
+# Función para verificar si un número es primo
+def verificarP(numero):
+    if numero < 2:
+        return False
+    divisor = 2
+    while divisor * divisor <= numero:
+        if numero % divisor == 0:
+            return False
+        divisor += 1
+    return True
+
+# Función para encontrar y sumar los divisores primos de un número
+def sumatoriaDPN(numero):
+    suma = 0
+    divisor = 1
+    while divisor <= numero:
+        if numero % divisor == 0 and verificarP(divisor):
+            suma += divisor
+        divisor += 1
+    return suma
+
+# Solicitar al usuario que ingrese un número entero positivo
+num = input("Ingrese un número entero positivo: ")
+if num.isdigit():
+    numero = int(num)
+    if numero > 0:
+        resultado = sumatoriaDPN(numero)
+        print(f"La sumatoria de los divisores primos de {numero} es: {resultado}")
+    else:
+        print("El número debe ser un entero positivo mayor que cero.")
+else:
+    print("Por favor, ingrese un número entero válido.")
+
+3) Construir un script en python que permita calcular los n primeros números curiosos, donde
+cada número curioso cumple con la siguiente condición:
+• La suma de los números que lo dividen exáctamente (sin incluirlo al número curioso), es
+igual al número curioso.
+
+
+# Función para verificar si un número es curioso
+def verificaC(numero):
+    suma_divisores = sum(divisor for divisor in range(1, numero) if numero % divisor == 0)
+    return suma_divisores == numero
+
+# Función para encontrar los primeros n números curiosos
+def encontrarNC(n):
+    numeros_curiosos = []
+    numero = 1
+    while len(numeros_curiosos) < n:
+        if verificaC(numero):
+            numeros_curiosos.append(numero)
+        numero += 1
+    return numeros_curiosos
+
+# Solicitar al usuario que ingrese la cantidad de números curiosos que desea encontrar
+try:
+    n = int(input("Ingrese la cantidad de números curiosos que desea encontrar: "))
+    if n <= 0:
+        print("La cantidad debe ser un número entero positivo mayor que cero.")
+    else:
+        numeros_curiosos = encontrarNC(n)
+        print(f"Los primeros {n} números curiosos son: {numeros_curiosos}")
+except ValueError:
+    print("Por favor, ingrese un número entero válido.")
+

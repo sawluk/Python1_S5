@@ -1,0 +1,139 @@
+#David Noguera y Samuel Bolaños
+
+agenda = []
+
+def agregar_contacto():
+    nombre = input("Ingrese el nombre: ")
+    apellido = input("Ingrese el apellido: ")
+    identificacion = input("Ingrese la identificación: ")
+    celular = input("Ingrese el número de celular: ")
+    correo = input("Ingrese el correo electrónico: ")
+    direccion = input("Ingrese la dirección: ")
+
+    contacto = {
+        "Nombre": nombre,
+        "Apellido": apellido,
+        "Identificación": identificacion,
+        "Celular": celular,
+        "Correo electrónico": correo,
+        "Dirección": direccion
+    }
+
+    agenda.append(contacto)
+    print("Contacto agregado exitosamente.")
+
+def consultar_contacto():
+    identificacion = input("Ingrese la identificación del contacto a consultar: ")
+    encontrado = False
+    for contacto in agenda:
+        if contacto["Identificación"] == identificacion:
+            print("Información del contacto:")
+            for clave, valor in contacto.items():
+                print(f"{clave}: {valor}")
+            encontrado = True
+            break
+    if not encontrado:
+        print("No se encontró ningún contacto con esa identificación.")
+
+def actualizar_contacto():
+    identificacion = input("Ingrese la identificación del contacto a actualizar: ")
+    encontrado = False
+    for i in range(len(agenda)):
+        if agenda[i]["Identificación"] == identificacion:
+            print("Ingrese los nuevos datos:")
+            nombre = input("Nombre: ")
+            apellido = input("Apellido: ")
+            celular = input("Número de celular: ")
+            correo = input("Correo electrónico: ")
+            direccion = input("Dirección: ")
+            agenda[i]["Nombre"] = nombre
+            agenda[i]["Apellido"] = apellido
+            agenda[i]["Celular"] = celular
+            agenda[i]["Correo electrónico"] = correo
+            agenda[i]["Dirección"] = direccion
+            print("Contacto actualizado exitosamente.")
+            encontrado = True
+            break
+    if not encontrado:
+        print("No se encontró ningún contacto con esa identificación.")
+
+def eliminar_contacto():
+    identificacion = input("Ingrese la identificación del contacto a eliminar: ")
+    encontrado = False
+    for i in range(len(agenda)):
+        if agenda[i]["Identificación"] == identificacion:
+            del agenda[i]
+            print("Contacto eliminado exitosamente.")
+            encontrado = True
+            break
+    if not encontrado:
+        print("No se encontró ningún contacto con esa identificación.")
+
+def mostrar_todos_contactos():
+    if len(agenda) == 0:
+        print("La agenda está vacía.")
+    else:
+        print("Lista de contactos:")
+        for contacto in agenda:
+            print("--------------")
+            for clave, valor in contacto.items():
+                print(f"{clave}: {valor}")
+        print("--------------")
+
+while True:
+    print("\nBienvenido a la Agenda Electrónica")
+    print("1. Agregar nuevo contacto")
+    print("2. Consultar contacto por identificación")
+    print("3. Actualizar contacto por identificación")
+    print("4. Eliminar contacto por identificación")
+    print("5. Mostrar todos los contactos")
+    print("6. Salir")
+
+    opcion = input("Por favor, seleccione una opción: ")
+
+    if opcion == "1":
+        agregar_contacto()
+    elif opcion == "2":
+        consultar_contacto()
+    elif opcion == "3":
+        actualizar_contacto()
+    elif opcion == "4":
+        eliminar_contacto()
+    elif opcion == "5":
+        mostrar_todos_contactos()
+    elif opcion == "6":
+        print("¡Hasta luego!")
+        break
+    else:
+        print("Opción no válida. Por favor, seleccione una opción válida.")
+
+
+def salir():
+    print("¡Hasta luego!")
+
+while True:
+    print("\nBienvenido a la Agenda Electrónica")
+    print("1. Agregar nuevo contacto")
+    print("2. Consultar contacto por identificación")
+    print("3. Actualizar contacto por identificación")
+    print("4. Eliminar contacto por identificación")
+    print("5. Mostrar todos los contactos")
+    print("6. Salir")
+
+    opcion = input("Por favor, seleccione una opción: ")
+
+    if opcion == "1":
+        agregar_contacto()
+    elif opcion == "2":
+        consultar_contacto()
+    elif opcion == "3":
+        actualizar_contacto()
+    elif opcion == "4":
+        eliminar_contacto()
+    elif opcion == "5":
+        mostrar_todos_contactos()
+    elif opcion == "6":
+        salir()
+        break
+    else:
+        print("Opción no válida. Por favor, seleccione una opción válida.")
